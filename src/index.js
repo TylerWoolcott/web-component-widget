@@ -4,7 +4,8 @@ import reactToWebComponent from 'react-to-webcomponent';
 import PropTypes from 'prop-types';
 
 
-const styles = `.si-widget-anchor {
+const styles = `
+  .si-widget-anchor {
     text-decoration: none;
   }
   
@@ -160,7 +161,7 @@ const styles = `.si-widget-anchor {
 // </basic-functional-demo>
 
 
-function MyCounter() {
+function MyCounter({ apikey, language, topicid }) {
   const [studentData, setStudentData] = useState([]);
   async function fetchURL(url) {
     const response = await fetch(url);
@@ -173,35 +174,17 @@ function MyCounter() {
   //--------------- USE EFFECT
 
   useEffect(() => {
-    fetchURL(`https://api.hatchways.io/assessment/students`);
-  }, []);
+    fetchURL(`https://api.hatchways.io/assessment/${topicid}`);
+  }, [topicid]);
 
   if(!studentData.length) return 'No widgets found';
 
   return (
     <>
-  
+    {/* <h1>React Counter {name}</h1> */}
             <style>{styles}</style>
-            <div>Hi from React</div>
-    {/* <BrowserRouter>
-    <Routes>
-    <Route path="/test" element={<Static />}/>
-    </Routes>
-    </BrowserRouter> */}
-    <div>
-      {/* {studentData.map(student => (
-        <div key={student.id}>
-          <h1>{student.firstName}</h1>
-        </div>
-      )
-      )} */}
-      </div>
       <div className="w-full sm:w-[400px]">
-      <div 
-        apikey='' 
-        language=''
-        topicId='' 
-      >
+     
         {/* shadow root styles will be applied here */}
         <a className="si-widget-anchor" target='_top' href='https://intelligence.weforum.org/topics/a1Gb0000000LGk6EAG?utm_source=57N0ECrQAg7ZPOUXugaGj2Zm9E2p50GR6bWV9jtt&utm_medium=intelligence-widget&utm_campaign=widget.intelligence.weforum.org&utm_content=/getting-started.html'>
           <div className='si-widget-container-default'>
@@ -259,7 +242,7 @@ function MyCounter() {
           </div>
         </a>
       </div>
-    </div>
+  
     
    
     </>
@@ -273,7 +256,9 @@ function MyCounter() {
 
 
 MyCounter.propTypes = {
-  name: PropTypes.string
+  apikey: PropTypes.string,
+  language: PropTypes.string,
+  topicid: PropTypes.string
 }
 
 // ReactDOM.render(<MyCounter />, document.getElementById('app'));
