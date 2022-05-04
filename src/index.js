@@ -151,35 +151,37 @@ const styles = `
   }
   `;
 
-function IntelligenceWidget({ apikey, topicid }) {
+function IntelligenceWidget({ apikey, topicid, language }) {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    let didCancel = false;
+  // useEffect(() => {
+  //   let didCancel = false;
 
-    const getData = async () => {
-      let url = `https://rest.coinapi.io/v1/${topicid}`
-      let config = {
-        headers: {
-          "Accept-Language": "en, pt, ja, fr, es, zh, ar",
-          'X-CoinAPI-Key': process.env.REACT_APP_API_KEY
-        },
-        "method": "GET",
-        "hostname": "rest.coinapi.io",
-        "path": "/v1/exchanges",
-      }
-      const { data } = await API.get(url, config);
-      if (!didCancel) {
-        setData(data);
-      }
-    }
-    getData();
-    return () => {
-      didCancel = true;
-    }
-  }, [topicid]);
+  //   const getData = async () => {
+  //     let url = `https://rest.coinapi.io/v1/${topicid}`
+  //     let config = {
+  //       headers: {
+  //         "Accept-Language": "en, pt, ja, fr, es, zh, ar",
+  //         'X-CoinAPI-Key': process.env.REACT_APP_API_KEY
+  //       },
+  //       "method": "GET",
+  //       "hostname": "rest.coinapi.io",
+  //       "path": "/v1/exchanges",
+  //     }
+  //     const { data } = await API.get(url, config);
+  //     if (!didCancel) {
+  //       setData(data);
+  //     }
+  //   }
+  //   getData();
+  //   return () => {
+  //     didCancel = true;
+  //   }
+  // }, [topicid]);
 
-  if(!data.length) return 'Loading...';
+  // if(!data.length) return 'Loading...';
+
+  // sample api data for line 228: {data[3].exchange_id}
 
   return (
     <>
@@ -224,7 +226,7 @@ function IntelligenceWidget({ apikey, topicid }) {
               </div>
               <div className='si-widget-title-container'>
                 <h1 className='si-widget-title'>Strategic Intelligence</h1>
-                <h2 className='si-widget-topic'>{data[3].exchange_id}</h2>
+                <h2 className='si-widget-topic'>The Ocean</h2>
               </div>
             </div>
             <img className='si-widget-map-default' src='https://map-images-prod.contextualiq.org/map_a1Gb0000000LGk6EAG_artistic-snapshot.png?Expires=1651735368&Signature=DSk57gDX3EeZV4KCyP7maV7DBhAXFIdmuGbX4b9lgrAO9NTCMfxnBdt4hp1PUpNHeSaSHVLtdd8GFMICNKRNpyECkEocU909ZlSKTJ8TY0HWHb8mEYRxSL4Nv8IE7TD0skJ9LRQlSO8xsJTF2pDrRK-XEm34fPxLWTuwgb4VnLu8Iy6hAAnpB7N8LmXm6fiRZkvr0VpfVk2NTdJSkKZeoUlZbCfFMrj6ZF3-W~LXdKcb5p7OJOiTjZNEd19pcVUKnMu9HHaBrnyQEZ103BJPqyHC-IrB~v3qIiVqFuO-U5bjZywfLehMe3wql5NE4Zdnh0hOz8YIkEZky0F5RClYFA__&Key-Pair-Id=APKAJH7M2FE27DIOGT7Q' alt='si-widget' />
@@ -232,10 +234,10 @@ function IntelligenceWidget({ apikey, topicid }) {
               <div className='si-widget-footer-cta'>Learn more about the latest strategic trends and research from the World Economic Forum
               </div>
               <div className='si-widget-footer-cta-icon'>
-              <svg width="40" height="40" viewBox="-18 -18 572.00902 572" xmlns="http://www.w3.org/2000/svg">
-                <path className="si-icon" d="m279.628906 143.855469c-4.851562-4.855469-12.722656-4.855469-17.582031 0-4.855469 4.851562-4.855469 12.726562 0 17.582031l94.164063 94.164062h-250.191407c-6.886719 0-12.472656 5.585938-12.472656 12.472657 0 6.890625 5.585937 12.472656 12.472656 12.472656h250.066407l-94.164063 94.164063c-2.335937 2.328124-3.648437 5.496093-3.648437 8.792968 0 3.300782 1.3125 6.460938 3.648437 8.792969 2.335937 2.355469 5.535156 3.660156 8.855469 3.617187 3.308594-.015624 6.484375-1.3125 8.851562-3.617187l115.367188-115.363281c2.347656-2.351563 3.65625-5.542969 3.621094-8.859375-.023438-3.308594-1.320313-6.472657-3.621094-8.851563zm0 0"></path>
-                <path className="si-icon" d="m268.15625-.0742188c-108.457031-.0195312-206.242188 65.3085938-247.746094 165.5117188-41.496094 100.207031-18.542968 215.542969 58.171875 292.210938 104.703125 104.703124 274.453125 104.703124 379.152344 0 104.699219-104.695313 104.699219-274.445313 0-379.148438-50.167969-50.453125-118.429687-78.746094-189.578125-78.5742188zm0 511.3554688c-134.074219 0-243.203125-109.132812-243.203125-243.207031s109.128906-243.203125 243.203125-243.203125 243.207031 109.128906 243.207031 243.203125-109.132812 243.207031-243.207031 243.207031zm0 0"></path>
-              </svg>
+                <svg width="40" height="40" viewBox="-18 -18 572.00902 572" xmlns="http://www.w3.org/2000/svg">
+                  <path className="si-icon" d="m279.628906 143.855469c-4.851562-4.855469-12.722656-4.855469-17.582031 0-4.855469 4.851562-4.855469 12.726562 0 17.582031l94.164063 94.164062h-250.191407c-6.886719 0-12.472656 5.585938-12.472656 12.472657 0 6.890625 5.585937 12.472656 12.472656 12.472656h250.066407l-94.164063 94.164063c-2.335937 2.328124-3.648437 5.496093-3.648437 8.792968 0 3.300782 1.3125 6.460938 3.648437 8.792969 2.335937 2.355469 5.535156 3.660156 8.855469 3.617187 3.308594-.015624 6.484375-1.3125 8.851562-3.617187l115.367188-115.363281c2.347656-2.351563 3.65625-5.542969 3.621094-8.859375-.023438-3.308594-1.320313-6.472657-3.621094-8.851563zm0 0"></path>
+                  <path className="si-icon" d="m268.15625-.0742188c-108.457031-.0195312-206.242188 65.3085938-247.746094 165.5117188-41.496094 100.207031-18.542968 215.542969 58.171875 292.210938 104.703125 104.703124 274.453125 104.703124 379.152344 0 104.699219-104.695313 104.699219-274.445313 0-379.148438-50.167969-50.453125-118.429687-78.746094-189.578125-78.5742188zm0 511.3554688c-134.074219 0-243.203125-109.132812-243.203125-243.207031s109.128906-243.203125 243.203125-243.203125 243.207031 109.128906 243.207031 243.203125-109.132812 243.207031-243.207031 243.207031zm0 0"></path>
+                </svg>
               </div>
             </div>
           </div>
@@ -246,7 +248,8 @@ function IntelligenceWidget({ apikey, topicid }) {
 
 IntelligenceWidget.propTypes = {
   apikey: PropTypes.string,
-  topicid: PropTypes.string
+  topicid: PropTypes.string,
+  language: PropTypes.string
 }
 
 axios.defaults.headers = { Accept: 'application/json' };
