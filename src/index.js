@@ -154,32 +154,32 @@ const styles = `
 function IntelligenceWidget({ apikey, topicid, language }) {
   const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   let didCancel = false;
+  useEffect(() => {
+    let didCancel = false;
 
-  //   const getData = async () => {
-  //     let url = `https://rest.coinapi.io/v1/${topicid}`
-  //     let config = {
-  //       headers: {
-  //         "Accept-Language": "en, pt, ja, fr, es, zh, ar",
-  //         'X-CoinAPI-Key': process.env.REACT_APP_API_KEY
-  //       },
-  //       "method": "GET",
-  //       "hostname": "rest.coinapi.io",
-  //       "path": "/v1/exchanges",
-  //     }
-  //     const { data } = await API.get(url, config);
-  //     if (!didCancel) {
-  //       setData(data);
-  //     }
-  //   }
-  //   getData();
-  //   return () => {
-  //     didCancel = true;
-  //   }
-  // }, [topicid]);
+    const getData = async () => {
+      let url = `https://rest.coinapi.io/v1/${topicid}`
+      let config = {
+        headers: {
+          "Accept-Language": "en, pt, ja, fr, es, zh, ar",
+          'X-CoinAPI-Key': process.env.REACT_APP_API_KEY
+        },
+        "method": "GET",
+        "hostname": "rest.coinapi.io",
+        "path": "/v1/exchanges",
+      }
+      const { data } = await API.get(url, config);
+      if (!didCancel) {
+        setData(data);
+      }
+    }
+    getData();
+    return () => {
+      didCancel = true;
+    }
+  }, [topicid]);
 
-  // if(!data.length) return 'Loading...';
+  if(!data.length) return 'Loading...';
 
   // sample api data for line 228: {data[3].exchange_id}
 
