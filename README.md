@@ -41,7 +41,7 @@ Makes most sense to use **web components** for the widget and **React** for the 
 - Third-party content can be embedded as Web Component by simply adding a script and a custom HTML tag 
 - The same web component can be reused on multiple target pages with minimal effort
 - Isolated DOM: A component's DOM is self-contained (e.g. document.querySelector() won't return nodes in the component's shadow DOM). Shadow DOM content can be rendered by browsers without putting it inside the main document DOM tree
-- Scoped CSS: CSS defined inside shadow DOM is scoped to it. Style rules don't leak out(except for CSS variables) and page styles don't bleed in, e.g., if we style a button in the `</style>` block, this style only applies to our custom element content but not for all buttons on the page
+- Scoped CSS: CSS defined inside shadow DOM is scoped to it. Style rules don't leak out (except for CSS variables) and page styles don't bleed in, e.g., if we style a button in the `</style>` block, this style only applies to our custom element content but not for all buttons on the page
 - Simplifies CSS - Scoped DOM means we can use simple CSS selectors, more generic id/class names, and not worry about naming conflicts
 - Works well with other new web platform features (Shadow DOM, `<template>`, CSS custom properties, etc.)
 - Tightly integrated with the browser's DevTools
@@ -74,7 +74,7 @@ Makes most sense to use **web components** for the widget and **React** for the 
 
 **Cons:** 
 - Consumer can’t tweak any of the styles in the iFrame. Also, for example, by default, browsers display the `<iframe>` with a surrounding border (which is generally undesirable). This can lead to inconsistent user interfaces and a bad experience all around
-- Iframes are inherently unresponsive, so we have to set up a postMessage-driven mechanism of manually keeping the height up to date. This comes with library bloat andcomputationaloverhead
+- Iframes are inherently unresponsive, so we have to set up a postMessage-driven mechanism of manually keeping the height up to date. This comes with library bloat and computational overhead
 - Iframes are hard to write for: CORS errors are common, as iframes are locked down and things like hooking into scroll events need to be ‘normalised’ before forwarding to the iframe, to take into account the iFrame offset
 - Iframes require a ‘title’, otherwise screen readers announce them simply as ‘iframe’. Shadow DOM has no such requirement as it’s ‘native’ to the page
 - The nested context created in embedded pages could result in decreased SEO credit for the host page, as search engines will attribute content to the iFrame’s source URL
@@ -100,7 +100,7 @@ Makes most sense to use **web components** for the widget and **React** for the 
     - When an invalid API key was used
     - When a topic could not be matched given the parameters provided
     - When the widget was unable to contact the server for some reason
- - Allow the widget to expand to fill its container, giving control to the developer (SI recommends using a container width of around 350-400px and a minimum of 300px) 
+ - Allow the widget to expand to fill its container, giving control to the developer (SI recommends using a container width of around `350-400px` and a minimum of `300px`) 
  - Offer some limited options for customising the style of the widget (SI's widget supports the changing of background colour, thumbnail radius, and/or font family through the use of an enclosing div tag and css). To do this we can use CSS variable custom properties scoped to the custom element
 
 ## Ways I might evolve the widget to improve its appeal and utility
@@ -123,7 +123,7 @@ Makes most sense to use **web components** for the widget and **React** for the 
 To install locally you will need to have node installed on your computer.
 
 ```bash
-git clone https://github.com/TylerWoolcott/web-component-widget.gi
+git clone https://github.com/TylerWoolcott/web-component-widget.git
 yarn install
 yarn start
 ```
