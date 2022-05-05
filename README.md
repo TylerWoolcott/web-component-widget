@@ -89,7 +89,7 @@ Makes most sense to use **web components** for the widget and **React** for the 
 **Web components**, **shadow DOM**, and **custom elements** together with **React**. 
 
 ## Layout configuration considerations 
-- If a user browsing a website with the embedded widget uses an unsupported browser, the widget will emit no HTML. One solution would be to add fallback content in between the opening and closing tags, and non-supporting browsers will effectively ignore the outer element and run the nested content. For example: 
+- If a user browsing a customer's website with the embedded widget is using an unsupported browser, the widget will emit no HTML. One solution would be to add fallback content in between the opening and closing tags, and non-supporting browsers will effectively ignore the outer element and run the nested content. For example: 
 ```html
 <!-- Offer download -->
   <p>Your browser does not support this widget; here is a link to
@@ -134,20 +134,20 @@ Open `http://localhost:3000` in a browser.
 
 How did this little mini project go?
 
-I actually really enjoyed it but it took me quite a while because I had to learn web components and how to use them in a React environment. If I were to tackle a project of similar size then it would take me less than half the time. I developed a system of working comprising of 3 interlinking parts. 
+I actually really enjoyed it but it took me quite a while because I had to learn web components and how to use them in a React environment. If I were to tackle a project of similar size then it would take me less than half the time. During the project I developed a system of working comprising of 3 interlinking parts. 
 1. [Web Component Widget](https://github.com/TylerWoolcott/web-component-widget.git) repo
 - I developed and built the widget then `yarn run build`ed it and copied the `build/static/index.js` file.
 2. [Widget Host](https://github.com/TylerWoolcott/widget-host.git) repo 
 - I pasted it into the `public/index.js`directory and removed the existing one. 
 - I pushed the changes to the repo and deployed it to Vercel `https://widget-host.vercel.app/index.js`
 3. [Widget Display](https://github.com/TylerWoolcott/widget-display.git) repo 
-- I pasted the `<script type="text/javascript" src="https://widget-host.vercel.app/index.js"></script>` into the `public/index.html` file and added the `<intelligence-widget apiKey="YOUR_API_KEY_HERE" topicId="a1Gb0000000LGk6EAG" language="en"></intelligence-widget>` to the src/app.js file. This repo represents a customer embedding the widget on their site, which users can copy the embed link from the frontend and paste it into their own site.
+- I pasted the `<script type="text/javascript" src="https://widget-host.vercel.app/index.js"></script>` into the `public/index.html` file and added the `<intelligence-widget apiKey="YOUR_API_KEY_HERE" topicId="a1Gb0000000LGk6EAG" language="en"></intelligence-widget>` to the `src/app.js` file. The Widget Display repo represents a customer embedding the widget on their site, from which users (if they become an SI customer with a valid API key) can copy the embed link and paste it into their own site.
 
 ### What am I proud of?
 
 I believe I have done a good job in my presentation, in terms of clear code and commits. I have not tidied/rebased my commit messages so you can get a good idea of my progress and thoughts throughout development.
 
-I am pleased with the responsive and intuitive widget which works nicely at different resolutions and on mobile thanks to Bootstrap for the widget embed links modal.
+I am pleased with the responsive and intuitive widget which works nicely at different resolutions and on mobile thanks to Bootstrap for the widget embed link modal.
 
 ## Would could I have done better?
 
@@ -155,7 +155,7 @@ I would have liked to have done TDD. TDD does take a little longer but I believe
 
 Other than TDD, a polished product would contain way more tests. For example in relation to potential CORS issues, e.g., if we have someone else loading their website from their server and then loading our component files from our server then we may have CORS problems.
 
-There are some obvious features missing from the project. Adding an embeddable iFrame option would have been a nice feature to have been able to implement. Polyfills with fallback content for unsupported browsers would have been useful to add to its bundle. I also think a loading animation would have been good for times when SI's server might be slow.
+There are some obvious features missing from the project. Adding an embeddable iFrame option would have been a nice feature to implement to help users who are using legacy platforms that do not yet support webcomponents. Polyfills with fallback content for unsupported browsers would have been useful to add to the widget's bundle as well. I also think a loading animation would have been good for times when SI's server might be slow.
 
 I think it's good to have deployed the app so it can be easily tested on multiple devices. However, I would have liked to have had time to create a Dockerfile to push to Docker Hub for ease of testing locally.
 
