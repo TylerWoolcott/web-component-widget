@@ -89,8 +89,19 @@ Makes most sense to use **web components** for the widget and **React** for the 
 **Web components**, **shadow DOM**, and **custom elements** together with **React**. 
 
 ## Layout configuration considerations 
+- If a user browsing a website with the embedded widget uses an unsupported browser, the widget will emit no HTML. One solution would be to add fallback content in between the opening and closing tags, and non-supporting browsers will effectively ignore the outer element and run the nested content. For example: 
+```html
+<!-- Offer download -->
+  <p>Your browser does not support this widget; here is a link to
+  <a href="https://intelligence.weforum.org/topics/a1Gb0000000LGk6EAG?utm_source=57N0ECrQAg7ZPOUXugaGj2Zm9E2p50GR6bWV9jtt&utm_medium=intelligence-widget&utm_campaign=widget.intelligence.weforum.org&utm_content=/getting-started.html">view the transformation map</a> directly.</p>
+  ```
+
+  - For help in troubleshooting and debugging, the widget occasionally emits minimal logging in to the browser's console log. As SI notes: 
+    - When an invalid API key was used
+    - When a topic could not be matched given the parameters provided
+    - When the widget was unable to contact the server for some reason
  - Allow the widget to expand to fill its container, giving control to the developer (SI recommends using a container width of around 350-400px and a minimum of 300px). 
- - Offer some limited options for customising the style of the widget (SI's widget supports the changing of background colour. thumbnail radius, and/or font family through the use of an enclosing div tag and css). To do this we can use CSS variable custom properties scoped to the custom element. 
+ - Offer some limited options for customising the style of the widget (SI's widget supports the changing of background colour, thumbnail radius, and/or font family through the use of an enclosing div tag and css). To do this we can use CSS variable custom properties scoped to the custom element. 
 
 ## Ways I might evolve the widget to improve its appeal and utility
  - Using the widget, enable customers to more fully customise and surface the transformation maps on their site, such as: 
@@ -112,7 +123,7 @@ Makes most sense to use **web components** for the widget and **React** for the 
 To install locally you will need to have node installed on your computer.
 
 ```bash
-git clone https://github.com/TylerWoolcott/widget-display.git
+git clone https://github.com/TylerWoolcott/web-component-widget.gi
 yarn install
 yarn start
 ```
@@ -123,7 +134,7 @@ Open `http://localhost:3000` in a browser.
 
 How did this little mini project go?
 
-I actually really enjoyed it but it took me quite a while because I had to learn web components and how to use them in a React project environment. If I were to tackle a project of similar size then it would take me less than half the time. I developed a system of working comprising of 3 interlinking parts. 
+I actually really enjoyed it but it took me quite a while because I had to learn web components and how to use them in a React environment. If I were to tackle a project of similar size then it would take me less than half the time. I developed a system of working comprising of 3 interlinking parts. 
 1. [Web Component Widget](https://github.com/TylerWoolcott/web-component-widget.git) repo
 - I developed and built the widget then `yarn run build`ed it and copied the `build/static/index.js` file.
 2. [Widget Host](https://github.com/TylerWoolcott/widget-host.git) repo 
@@ -136,19 +147,17 @@ I actually really enjoyed it but it took me quite a while because I had to learn
 
 I believe I have done a good job in my presentation, in terms of clear code and commits. I have not tidied/rebased my commit messages so you can get a good idea of my progress and thoughts throughout development.
 
-I am pleased with the responsive frontend which works nicely at different resolutions and on mobile thanks to Bootstrap for the widget embed links modal.
+I am pleased with the responsive and intuitive widget which works nicely at different resolutions and on mobile thanks to Bootstrap for the widget embed links modal.
 
 ## Would could I have done better?
 
-I would have liked to have done more TDD. TDD does take a little longer but I believe it results in a more robust product. Ultimately time constraints forced my hand on this one.
+I would have liked to have done TDD. TDD does take a little longer but I believe it results in a more robust product. 
 
-Other than TDD, a polished product would contain way more tests. It's missing end-to-end and integration tests. I am also aware that no effort has been put into testing security like XSS or DNS attacks.
+Other than TDD, a polished product would contain way more tests. For example in relation to potential CORS issues, e.g., if we have someone else loading their website from their server and then loading our component files from our server then we may have CORS problems.
 
-There are some obvious features missing from the project. Pagination would have been a nice feature to have been able to implement along with text showing the total number of results and how far through you are. I also think a loading animation would have been good for times when either my or Spotify's server are slow.
+There are some obvious features missing from the project. Adding an embeddable iFrame option would have been a nice feature to have been able to implement. Polyfills with fallback content for unsupported browsers would have been useful to add to its bundle. I also think a loading animation would have been good for times when SI's server might be slow.
 
 I think it's good to have deployed the app so it can be easily tested on multiple devices. However, I would have liked to have had time to create a Dockerfile to push to Docker Hub for ease of testing locally.
-
-Obviously, I only got to implement 3 of the 6 types of Spotify entity.
 
 ### Development tools
 
