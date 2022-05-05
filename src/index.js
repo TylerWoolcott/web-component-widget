@@ -154,32 +154,32 @@ const styles = `
 function IntelligenceWidget({ apikey, topicid, language }) {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    let didCancel = false;
+  // useEffect(() => {
+  //   let didCancel = false;
 
-    const getData = async () => {
-      let url = `https://rest.coinapi.io/v1/${topicid}`
-      let config = {
-        headers: {
-          "Accept-Language": "en, pt, ja, fr, es, zh, ar",
-          'X-CoinAPI-Key': process.env.REACT_APP_API_KEY
-        },
-        "method": "GET",
-        "hostname": "rest.coinapi.io",
-        "path": "/v1/exchanges",
-      }
-      const { data } = await API.get(url, config);
-      if (!didCancel) {
-        setData(data);
-      }
-    }
-    getData();
-    return () => {
-      didCancel = true;
-    }
-  }, [topicid]);
+  //   const getData = async () => {
+  //     let url = `https://rest.coinapi.io/v1/${topicid}`
+  //     let config = {
+  //       headers: {
+  //         "Accept-Language": "en, pt, ja, fr, es, zh, ar",
+  //         'X-CoinAPI-Key': process.env.REACT_APP_API_KEY
+  //       },
+  //       "method": "GET",
+  //       "hostname": "rest.coinapi.io",
+  //       "path": "/v1/exchanges",
+  //     }
+  //     const { data } = await API.get(url, config);
+  //     if (!didCancel) {
+  //       setData(data);
+  //     }
+  //   }
+  //   getData();
+  //   return () => {
+  //     didCancel = true;
+  //   }
+  // }, [topicid]);
 
-  if(!data.length) return 'Loading...';
+  // if(!data.length) return 'Loading...';
 
   // sample api data for line 228: {data[3].exchange_id}
 
@@ -229,7 +229,7 @@ function IntelligenceWidget({ apikey, topicid, language }) {
                 <h2 className='si-widget-topic'>The Ocean</h2>
               </div>
             </div>
-            <img className='si-widget-map-default' src='https://map-images-prod.contextualiq.org/map_a1Gb0000000LGk6EAG_artistic-snapshot.png?Expires=1651735368&Signature=DSk57gDX3EeZV4KCyP7maV7DBhAXFIdmuGbX4b9lgrAO9NTCMfxnBdt4hp1PUpNHeSaSHVLtdd8GFMICNKRNpyECkEocU909ZlSKTJ8TY0HWHb8mEYRxSL4Nv8IE7TD0skJ9LRQlSO8xsJTF2pDrRK-XEm34fPxLWTuwgb4VnLu8Iy6hAAnpB7N8LmXm6fiRZkvr0VpfVk2NTdJSkKZeoUlZbCfFMrj6ZF3-W~LXdKcb5p7OJOiTjZNEd19pcVUKnMu9HHaBrnyQEZ103BJPqyHC-IrB~v3qIiVqFuO-U5bjZywfLehMe3wql5NE4Zdnh0hOz8YIkEZky0F5RClYFA__&Key-Pair-Id=APKAJH7M2FE27DIOGT7Q' alt='si-widget' />
+            <img className='si-widget-map-default' src='https://map-images-prod.contextualiq.org/map_a1Gb0000000LGk6EAG_artistic-snapshot.png?Expires=1652267583&Signature=W6MDWyRM2q-~7nECLzJyYjJr192FgYvmDekFe1LFayrneihIrsojd6Cf7SNJD6M3LjOZc6B536~BW~vWo~P-FjjsU37x0e3FUWXLB2K-iNTvy-XIV2DmvebeR7ErOuTpUQMOc6x7g6mDce3M4u60SGJqinzQDIrPW6bS8BsAwR0dbZAAZF~bp~qKx7Aa~ZPbhEKFVVIzXwCiH-WdDd~s8ESwsLiCN5QSq8MX4TkgdxJltolHlu-0NUbC-~53wqdyrpK3WurNrsKz-Z9otPZ71CEnRELOx6ot9a-RA2P42Iy9D9hbOHkEf7PBKdBVBRkgI7-VdQkrCAqXK38CjYOd6w__&Key-Pair-Id=APKAJH7M2FE27DIOGT7Q' alt='si-widget' />
             <div className='si-widget-footer-row'>
               <div className='si-widget-footer-cta'>Learn more about the latest strategic trends and research from the World Economic Forum
               </div>
