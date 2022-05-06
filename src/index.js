@@ -4,6 +4,8 @@ import reactToWebComponent from 'react-to-webcomponent';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+// dark mode  
+
 const styles = `
   .si-widget-anchor {
     text-decoration: none;
@@ -64,6 +66,14 @@ const styles = `
     font-size: 18px;
     line-height: 20px;
     color: var(--textColor, #4a4b63);
+  }
+
+  .si-widget-title--darkmode {
+    margin: 0px;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 20px;
+    color: var(--darkmode, #0000FF);
   }
   
   .si-widget-topic {
@@ -151,8 +161,10 @@ const styles = `
   }
   `;
 
-function IntelligenceWidget({ apikey, topicid, language }) {
+function IntelligenceWidget({ apikey, topicid, language, darkmode }) {
   const [data, setData] = useState([]);
+
+  console.log(darkmode)
 
   // useEffect(() => {
   //   let didCancel = false;
@@ -225,7 +237,7 @@ function IntelligenceWidget({ apikey, topicid, language }) {
                 </svg>
               </div>
               <div className='si-widget-title-container'>
-                <h1 className='si-widget-title'>Strategic Intelligence</h1>
+                <h1 className= {darkmode === 'true' ? 'si-widget-title--darkmode' : 'si-widget-title'}>Strategic Intelligence</h1>
                 <h2 className='si-widget-topic'>The Ocean</h2>
               </div>
             </div>
@@ -249,7 +261,8 @@ function IntelligenceWidget({ apikey, topicid, language }) {
 IntelligenceWidget.propTypes = {
   apikey: PropTypes.string,
   topicid: PropTypes.string,
-  language: PropTypes.string
+  language: PropTypes.string,
+  darkmode: PropTypes.bool,
 }
 
 axios.defaults.headers = { Accept: 'application/json' };
